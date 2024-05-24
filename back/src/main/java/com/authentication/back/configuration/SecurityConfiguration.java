@@ -33,10 +33,10 @@ public class SecurityConfiguration {
         httpSecurity
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests((request) -> request 
-                .requestMatchers("/darkmagic/authentication/**").permitAll()
-                .requestMatchers("/darkmafic/common/**").authenticated()
-                .requestMatchers("/darkmagic/admin/**").hasAuthority("ADMIN")
-                .requestMatchers("/darkmagic/user/**").hasAuthority("USER")
+                .requestMatchers("/api-authentication/admin/**","/swagger-ui/index.html","v3/api-docs","/swagger-ui.html").permitAll()
+                .requestMatchers("/api-authentication/common/**").authenticated()
+                .requestMatchers("/api-authentication/admin/**").hasAuthority("ADMIN")
+                .requestMatchers("/api-authentication/user/**").hasAuthority("USER")
                 .anyRequest().authenticated()
             )
             .sessionManagement((manager) -> manager
